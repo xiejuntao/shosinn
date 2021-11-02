@@ -13,6 +13,7 @@
         <module>springboot</module>
         <module>sb-admin</module>
         <module>sb-client</module>
+        <module>sc-eureka</module>
     </modules>
 
     <properties>
