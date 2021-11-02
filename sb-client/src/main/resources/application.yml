@@ -1,0 +1,18 @@
+# actuactor properties
+server:
+  port: 6666
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:9999 #SpringBoot Admin Server地址
+        instance:
+          name: sb-client #注册上去的服务名称
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' #暴露所有的Actuator端点
+  endpoint:
+    health:
+      show-details: always

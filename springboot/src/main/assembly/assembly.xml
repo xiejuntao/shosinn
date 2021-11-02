@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<assembly>
+	<id>deploy</id>
+	<baseDirectory />
+	<formats>
+		<format>tar.gz</format>
+	</formats>
+	<dependencySets>
+		<dependencySet>
+			<useProjectArtifact>true</useProjectArtifact>
+			<outputDirectory>lib</outputDirectory>
+		</dependencySet>
+	</dependencySets>
+	<fileSets>
+		<fileSet>
+			<directory>script/${env}/</directory>
+			<outputDirectory>/</outputDirectory>
+			<fileMode>0755</fileMode>
+			<includes>
+				<include>*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>config/${env}/conf</directory>
+			<outputDirectory>/conf</outputDirectory>
+			<fileMode>0644</fileMode>
+			<includes>
+				<include>*</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>

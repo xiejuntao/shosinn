@@ -3,3 +3,8 @@
 /shosinn.iml
 /basic/target/
 /basic/basic.iml
+/sb-admin/target/
+target
+/sb-admin/sb-admin.iml
+/sb-client/sb-client.iml
+/springboot/springboot.iml
