@@ -1,0 +1,13 @@
+server:
+  port: 7070
+spring:
+  application:
+    name: sc-eureka-client0
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7777/eureka/
+    preferSameZoneEureka:
+      instance: true
+    metadataMap:
+      zone: zone_client0

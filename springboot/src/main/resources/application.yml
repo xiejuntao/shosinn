@@ -5,3 +5,8 @@ management:
       base-path: /actuator #配置端点访问前缀
       exposure:
         include: '*' #暴露所有端点
+#eureka
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7777/eureka/
