@@ -16,6 +16,7 @@
         <module>sc-eureka</module>
         <module>sc-eureka-client0</module>
         <module>sc-eureka-client1</module>
+        <module>algorithm</module>
     </modules>
 
     <properties>
