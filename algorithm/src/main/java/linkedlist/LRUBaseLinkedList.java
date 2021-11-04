@@ -1,4 +1,4 @@
-package linked.singlelist;
+package linkedlist;
 
 
 import java.util.Scanner;
@@ -20,7 +20,6 @@ public class LRUBaseLinkedList<T> {
      * 头结点
      */
     private SNode<T> headNode;
-
     /**
      * 链表长度
      */

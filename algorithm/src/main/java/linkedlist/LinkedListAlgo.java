@@ -12,8 +12,8 @@ package linkedlist;
 public class LinkedListAlgo {
 
   // 单链表反转
-  public static Node reverse(Node list) {
-    Node curr = list, pre = null;
+  public static Node reverse(Node node) {
+    Node curr = node, pre = null;
     while (curr != null) {
       Node next = curr.next;
       curr.next = pre;
@@ -24,11 +24,11 @@ public class LinkedListAlgo {
   }
 
   // 检测环
-  public static boolean checkCircle(Node list) {
-    if (list == null) return false;
+  public static boolean checkCircle(Node node) {
+    if (node == null) return false;
 
-    Node fast = list.next;
-    Node slow = list;
+    Node fast = node.next;
+    Node slow = node;
 
     while (fast != null && fast.next != null) {
       fast = fast.next.next;
@@ -112,17 +112,17 @@ public class LinkedListAlgo {
 
 
   // 删除倒数第K个结点
-  public static Node deleteLastKth(Node list, int k) {
-    Node fast = list;
+  public static Node deleteLastKth(Node node, int k) {
+    Node fast = node;
     int i = 1;
     while (fast != null && i < k) {
       fast = fast.next;
       ++i;
     }
 
-    if (fast == null) return list;
+    if (fast == null) return node;
 
-    Node slow = list;
+    Node slow = node;
     Node prev = null;
     while (fast.next != null) {
       fast = fast.next;
@@ -131,19 +131,19 @@ public class LinkedListAlgo {
     }
 
     if (prev == null) {
-      list = list.next;
+      node = node.next;
     } else {
       prev.next = prev.next.next;
     }
-    return list;
+    return node;
   }
 
   // 求中间结点
-  public static Node findMiddleNode(Node list) {
-    if (list == null) return null;
+  public static Node findMiddleNode(Node node) {
+    if (node == null) return null;
 
-    Node fast = list;
-    Node slow = list;
+    Node fast = node;
+    Node slow = node;
 
     while (fast != null && fast.next != null) {
       fast = fast.next.next;
@@ -153,8 +153,8 @@ public class LinkedListAlgo {
     return slow;
   }
 
-  public static void printAll(Node list) {
-    Node p = list;
+  public static void printNode(Node node) {
+    Node p = node;
     while (p != null) {
       System.out.print(p.data + " ");
       p = p.next;
@@ -180,4 +180,7 @@ public class LinkedListAlgo {
     }
   }
 
+    public static void main(String[] args) {
+        System.out.println("algorithm");
+    }
 }
