@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class TController {
     @RequestMapping(value = "echo", method = RequestMethod.GET)
     public String echo(){
-        return "he he he";
+        return "r";
+    }
+    @RequestMapping(value = "hi", method = RequestMethod.GET)
+    public String hi(){
+        return "若";
     }
 }
