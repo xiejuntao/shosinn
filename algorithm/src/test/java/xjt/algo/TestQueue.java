@@ -10,52 +10,52 @@ public class TestQueue {
 
         queueString(queue);
 
-        push(queue,"a");
-        push(queue,"b");
-        push(queue,"c");
+        enqueue(queue,"a");
+        enqueue(queue,"b");
+        enqueue(queue,"c");
         queueString(queue);
 
-        pop(queue);
+        dequeue(queue);
         size(queue);
         queueString(queue);
-        pop(queue);
-        size(queue);
-        queueString(queue);
-
-        push(queue,"d");
-        push(queue,"e");
+        dequeue(queue);
         size(queue);
         queueString(queue);
 
-        pop(queue);
-        pop(queue);
-        pop(queue);
-        pop(queue);
-        pop(queue);
+        enqueue(queue,"d");
+        enqueue(queue,"e");
         size(queue);
         queueString(queue);
 
-        push(queue,"f");
-        push(queue,"g");
-        push(queue,"h");
+        dequeue(queue);
+        dequeue(queue);
+        dequeue(queue);
+        dequeue(queue);
+        dequeue(queue);
         size(queue);
         queueString(queue);
 
-        pop(queue);
-        pop(queue);
-        pop(queue);
-        pop(queue);
-        pop(queue);
-        pop(queue);
+        enqueue(queue,"f");
+        enqueue(queue,"g");
+        enqueue(queue,"h");
+        size(queue);
+        queueString(queue);
+
+        dequeue(queue);
+        dequeue(queue);
+        dequeue(queue);
+        dequeue(queue);
+        dequeue(queue);
+        dequeue(queue);
         size(queue);
         queueString(queue);
     }
-    private void push(Queue queue,Object object){
+    private void enqueue(Queue queue,Object object){
         queue.enqueue(object);
-        log.info("queue push="+object);
+        log.info("enqueue="+object);
     }
-    private void pop(Queue queue){
-        log.info("queue pop="+queue.pop());
+    private void dequeue(Queue queue){
+        log.info("dequeue="+queue.dequeue());
     }
     private void size(Queue queue){
         log.info("queue size="+queue.size());
