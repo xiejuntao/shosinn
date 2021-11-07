@@ -11,7 +11,7 @@ public class LinkedList<T> {
 
     }
     public int add(T t){
-        LinkedNode<T> node = new LinkedNode<T>(t);
+        LinkedNode<T> node = new LinkedNode<>(t);
         if(size()==0){
             head = node;
         }else {
@@ -46,19 +46,21 @@ public class LinkedList<T> {
             System.out.println(node);
             node = node.getNext();
         }
-    }
 
-    public static void main(String[] args){
-        LinkedList<String> list = new LinkedList<String>();
-        list.add("a");
-        list.add("b");
-        list.add("c");
-        list.add("d");
-        list.add("e");
-        list.add("f");
-        list.add("g");
-        list.add("h");
-        System.out.println("list.size()="+list.size());
-        list.printAll();
+    }
+    @Data
+    private static class LinkedNode<T> {
+        private T data;
+        private LinkedNode<T> next;
+        public LinkedNode(T t){
+            this.data = t;
+        }
+        @Override
+        public String toString() {
+            return "LinkedNode{" +
+                    "data=" + data +
+                    ", next=" + next +
+                    '}';
+        }
     }
 }
