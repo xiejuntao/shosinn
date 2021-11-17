@@ -6,7 +6,7 @@ public class TestLinkedList {
     @Test
     public void test(){
         LinkedList<String> list = new LinkedList<>();
-        System.out.println(list.add("a"));
+        list.add("a");
         list.add("b");
         list.add("c");
         list.add("d");
@@ -15,6 +15,11 @@ public class TestLinkedList {
         list.add("g");
         list.add("h");
         System.out.println("list.size()="+list.size());
-        list.printAll();
+        //list.printAll();
+        System.out.println(list.get(2));
+        System.out.println(list.get(-2));
+        System.out.println(list.get(0));
+        System.out.println(list.get(4));
+        System.out.println(list.get(41));
     }
 }

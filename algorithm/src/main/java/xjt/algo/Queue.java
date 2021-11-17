@@ -3,9 +3,8 @@ package xjt.algo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
-import lombok.ToString;
 
-public class Queue<T> {
+public class Queue<T>{
     @Getter
     private QueueNode<T> tail;
     @Getter
