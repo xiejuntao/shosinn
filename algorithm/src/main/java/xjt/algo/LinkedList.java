@@ -48,6 +48,22 @@ public class LinkedList<T> {
         }
 
     }
+    public T get(int i){
+        if(size<=0||i<0){
+            return null;
+        }
+        LinkedNode<T> node = head;
+        int index = 0;
+        while (node!=null){
+            //System.out.println(node);
+            if(index==i){
+                return node.getData();
+            }
+            node = node.getNext();
+            index=index+1;
+        }
+        return null;
+    }
     @Data
     private static class LinkedNode<T> {
         private T data;
