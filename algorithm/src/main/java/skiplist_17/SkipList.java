@@ -124,4 +124,15 @@ public class SkipList {
     }
   }
 
+  public static void main(String[] args) {
+    SkipList skipList = new SkipList();
+    skipList.insert(1);
+    skipList.insert(2);
+    skipList.insert(3);
+    skipList.insert(4);
+
+    System.out.println(skipList.find(2).data);
+
+
+  }
 }
