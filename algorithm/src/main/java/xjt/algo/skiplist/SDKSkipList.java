@@ -1,4 +1,4 @@
-package xjt.skiplist;
+package xjt.algo.skiplist;
 
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentSkipListMap;

@@ -1,4 +1,4 @@
-package xjt.skiplist;
+package xjt.algo.skiplist;
 /**
  *TODO:手写跳表
  *
