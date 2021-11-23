@@ -1,7 +1,9 @@
 package xjt.algo.trie;
 
 import lombok.ToString;
-
+/**
+ *应用于搜索关键
+ * */
 @ToString
 public class Trie {
     private TrieNode rootNode = new TrieNode('/');
