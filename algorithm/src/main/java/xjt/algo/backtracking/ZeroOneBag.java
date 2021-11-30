@@ -11,7 +11,7 @@ public class ZeroOneBag {
      * @param i 考察到哪个物品了，下标从0开始
      * @param cw 当前已经装进去的物品的重量和
      * @param items 每个物品的重量
-     * @param n 表示每个物品的重量
+     * @param n 表示物品的个数
      * @param w 背包承载重量
      * */
     public void bag(int i,int cw,int[] items,int n,int w){
@@ -23,7 +23,16 @@ public class ZeroOneBag {
         }
         bag(i+1,cw,items,n,w);//选择不装第i个物品，但是还要继续递归至下下一个物品(下标从0开始)
         if(cw+items[i]<=w){
+            System.out.println(items[i]);
             bag(i+1,cw+items[i],items,n,w);// 选择装第i个物品
         }
+    }
+
+    public static void main(String[] args) {
+        int[] items = new int[]{1,11,23,7,54,67,46,97};
+        int w = 101;
+        ZeroOneBag zeroOneBag = new ZeroOneBag();
+        zeroOneBag.bag(0,0,items,items.length,100);
+        System.out.println(zeroOneBag.maxW);
     }
 }
