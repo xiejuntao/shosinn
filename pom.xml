@@ -18,6 +18,7 @@
         <module>sc-eureka-client1</module>
         <module>algorithm</module>
         <module>sc-gateway</module>
+        <module>rpc</module>
     </modules>
 
     <properties>
