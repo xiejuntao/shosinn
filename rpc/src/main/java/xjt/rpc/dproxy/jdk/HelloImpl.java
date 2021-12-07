@@ -5,4 +5,5 @@ public class HelloImpl implements IHello{
     public String say() {
         return "重头再来";
     }
+
 }
