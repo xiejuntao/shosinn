@@ -1,4 +1,4 @@
-package xjt.cas;
+package xjt.concurrent.cas;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;

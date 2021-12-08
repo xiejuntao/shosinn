@@ -1,4 +1,4 @@
-package xjt.concurrent;
+package xjt.concurrent.disruptor;
 /**
  * 缓存行
  *

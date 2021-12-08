@@ -1,4 +1,4 @@
-package xjt.concurrent;
+package xjt.concurrent.disruptor;
 
 import com.lmax.disruptor.EventHandler;
 import lombok.extern.slf4j.Slf4j;

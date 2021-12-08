@@ -1,4 +1,4 @@
-package xjt.concurrent;
+package xjt.concurrent.disruptor;
 /**
  *对于伪共享，一般的解决方案是，增大数组元素的间隔使得由不同线程存取的元素位于不同的缓存行上，以空间换时间。
  * */

@@ -1,4 +1,4 @@
-package xjt.cyc;
+package xjt.concurrent.cyc;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;

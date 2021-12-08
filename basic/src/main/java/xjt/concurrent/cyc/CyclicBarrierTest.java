@@ -1,7 +1,6 @@
-package xjt.cyc;
+package xjt.concurrent.cyc;
 
 import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
