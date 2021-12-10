@@ -24,6 +24,9 @@ public class TestDriver{
             Connection connection = DriverManager.getConnection(mysqlUrl,mysqlUserName,mysqlUserPwd);
             System.out.println("connection="+connection);
             Statement statement = connection.createStatement();
+
+            PreparedStatement preparedStatement = connection.prepareStatement("");
+            preparedStatement.setString(0,"'' or 1=1");
             ResultSet resultSet = statement.executeQuery("人生呐");
             if(resultSet.next()){
                 System.out.println(resultSet.getString("了"));
