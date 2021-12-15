@@ -19,6 +19,7 @@
         <module>algorithm</module>
         <module>sc-gateway</module>
         <module>rpc</module>
+        <module>xnetty</module>
     </modules>
 
     <properties>

@@ -11,8 +11,8 @@ import java.nio.charset.StandardCharsets;
 public class XHandler implements Runnable{
     private static final int MAXIN = 1024;
     private static final int MAXOUT = 1024;
-    final SocketChannel socketChannel;
-    final SelectionKey selectionKey;
+    SocketChannel socketChannel;
+    SelectionKey selectionKey;
     static final int READING=0,SENDING=1,CLOSED = 2;
 
     ByteBuffer input = ByteBuffer.allocate(MAXIN);
@@ -27,6 +27,10 @@ public class XHandler implements Runnable{
         selectionKey.attach(this);
         selectionKey.interestOps(SelectionKey.OP_READ);
         selector.wakeup();// 唤醒 select() 方法
+    }
+
+    public XHandler(SocketChannel socketChannel) {
+        this.socketChannel = socketChannel;
     }
 
     @Override
