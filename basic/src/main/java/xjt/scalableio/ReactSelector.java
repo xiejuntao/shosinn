@@ -48,12 +48,11 @@ public class ReactSelector {
                         SocketChannel socketChannel = serverSocket.accept();
                         socketChannel.configureBlocking(false);
                         socketChannel.write(ByteBuffer.wrap("reactor> ".getBytes()));
-                        log.info("accept");
                         if (socketChannel != null) {
                             socketChannel.configureBlocking(false);
                             reactors[n].register(new Worker(socketChannel));
-                            if(++n== reactors.length){
-                                n=0;
+                            if(++n == reactors.length){
+                                n = 0;
                             }
                         }
                     }

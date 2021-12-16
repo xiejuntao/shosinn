@@ -16,10 +16,13 @@ import java.util.Set;
  * */
 @Slf4j
 public class MemCacheAcceptor {
-    public MemCacheAcceptor(){
-
+    protected ServerSocketChannel serverSocketChannel;
+    protected Selector selector;
+    public MemCacheAcceptor(ServerSocketChannel serverSocketChannel, Selector selector) {
+        this.serverSocketChannel = serverSocketChannel;
+        this.selector = selector;
     }
-    public void start(ServerSocketChannel serverSocketChannel,Selector selector){
+    public void start(AcceptorCallback acceptorCallback){
         try {
             while (true) {
                 int size = selector.select(); // 阻塞，直到有通道事件就绪
@@ -32,11 +35,10 @@ public class MemCacheAcceptor {
                         if (selectionKey.isAcceptable()) {
                             SocketChannel socketChannel = serverSocketChannel.accept();
                             socketChannel.configureBlocking(false);
-                            socketChannel.write(ByteBuffer.wrap("reactor> ".getBytes()));
-                            log.info("accept");
+                            socketChannel.write(ByteBuffer.wrap(MemCacheConstants.TIP.getBytes()));
                             if (socketChannel != null) {
                                 socketChannel.configureBlocking(false);
-                                //TODO reactor
+                                acceptorCallback.getMemCacheReator().register(new MemCacheWorker(socketChannel));
                             }
                         }
                         iterator.remove();
@@ -46,6 +48,8 @@ public class MemCacheAcceptor {
         }catch (IOException e){
             e.printStackTrace();
         }
-
+    }
+    interface AcceptorCallback{
+        public MemCacheReactor getMemCacheReator();
     }
 }
