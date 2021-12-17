@@ -8,6 +8,9 @@ import java.nio.channels.Selector;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
+/**
+ * 参考模型https://time.geekbang.org/column/article/8805
+ * */
 @Slf4j
 public class MemCacheReactor implements Runnable{
     private Selector selector;

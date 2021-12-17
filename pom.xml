@@ -20,6 +20,7 @@
         <module>sc-gateway</module>
         <module>rpc</module>
         <module>xnetty</module>
+        <module>drools</module>
     </modules>
 
     <properties>
