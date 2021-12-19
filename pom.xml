@@ -21,6 +21,7 @@
         <module>rpc</module>
         <module>xnetty</module>
         <module>drools</module>
+        <module>mds</module>
     </modules>
 
     <properties>
