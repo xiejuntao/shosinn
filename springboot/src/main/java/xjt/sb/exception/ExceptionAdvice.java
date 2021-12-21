@@ -1,4 +1,4 @@
-package xjt.shosinn.springboot.exception;
+package xjt.sb.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;

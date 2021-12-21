@@ -1,4 +1,4 @@
-package xjt.shosinn.springboot.controller;
+package xjt.sb.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
