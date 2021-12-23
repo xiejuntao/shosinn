@@ -1,3 +1,11 @@
 logging:
   level:
     root: "debug"
+
+user:
+  username: "xjt"
+  password: "xiejuntao"
+
+spring:
+  objenesis:
+    ignore: true

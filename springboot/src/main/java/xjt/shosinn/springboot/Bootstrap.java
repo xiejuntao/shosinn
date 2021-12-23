@@ -4,9 +4,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
-@ComponentScan("xjt.sb")
+@EnableAspectJAutoProxy(exposeProxy = true)
 @ComponentScans({@ComponentScan("xjt.sb"),@ComponentScan("xjt.shosinn")})
 public class Bootstrap {
     public static void main(String[] args) {

@@ -4,12 +4,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import xjt.sb.service.DataService;
+import xjt.sb.service.LifeService;
 import xjt.sb.service.PrototypeServiceImpl;
 import xjt.sb.service.ServiceImpl;
 @Slf4j
@@ -22,11 +24,18 @@ public class SController {
     @Autowired
     ApplicationContext applicationContext;
     @Autowired
+    //@Qualifier("xjt")
+    LifeService lifeService;
+    @Autowired
     @Qualifier("xjt.shosinn.springboot.SController$InnerDataService")
     DataService dataService;
+    @Value("${user.username}")
+    private String username;
+    @Value("${user.password}")
+    private String password;
     @RequestMapping(value = "s", method = RequestMethod.GET)
     public String s(){
-        return service.getName();
+        return "username:"+username+"<br/>password:"+password;
     }
     @RequestMapping(value = "p",method = RequestMethod.GET)
     public String p(){
@@ -57,5 +66,11 @@ public class SController {
         public void delete(long id) {
             log.info("inner delete`id={}",id);
         }
+    }
+    @RequestMapping(value = "l",method = RequestMethod.GET)
+    public String life(){
+        ///lifeService.getSelf().back();
+        lifeService.c();
+        return "";
     }
 }
