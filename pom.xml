@@ -22,6 +22,7 @@
         <module>xnetty</module>
         <module>drools</module>
         <module>mds</module>
+        <module>poc-log4j2</module>
     </modules>
 
     <properties>
