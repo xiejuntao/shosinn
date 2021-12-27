@@ -23,6 +23,7 @@
         <module>drools</module>
         <module>mds</module>
         <module>poc-log4j2</module>
+        <module>autumn</module>
     </modules>
 
     <properties>
