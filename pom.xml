@@ -23,7 +23,11 @@
         <module>drools</module>
         <module>mds</module>
         <module>poc-log4j2</module>
+<<<<<<< HEAD
         <module>mq</module>
+=======
+        <module>autumn</module>
+>>>>>>> 6c0a8a06ad78f0b53e433bb25012d90007ddb215
     </modules>
 
     <properties>
