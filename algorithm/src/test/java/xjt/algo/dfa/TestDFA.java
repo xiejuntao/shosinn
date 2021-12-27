@@ -1,6 +1,7 @@
 package xjt.algo.dfa;
 
 import org.junit.jupiter.api.Test;
+import xjt.algo.util.dfa.DFATree;
 
 import java.util.HashSet;
 import java.util.Set;

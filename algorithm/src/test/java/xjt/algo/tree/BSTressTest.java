@@ -1,6 +1,7 @@
 package xjt.algo.tree;
 
 import org.junit.jupiter.api.Test;
+import xjt.algo.util.tree.BSTree;
 
 public class BSTressTest {
     @Test

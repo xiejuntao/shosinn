@@ -1,6 +1,7 @@
 package xjt.algo.trie;
 
 import org.junit.jupiter.api.Test;
+import xjt.algo.util.trie.Trie;
 
 import java.util.HashSet;
 import java.util.Set;

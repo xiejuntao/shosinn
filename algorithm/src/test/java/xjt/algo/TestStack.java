@@ -1,6 +1,7 @@
 package xjt.algo;
 
 import org.junit.jupiter.api.Test;
+import xjt.algo.util.list.Stack;
 
 public class TestStack {
     @Test

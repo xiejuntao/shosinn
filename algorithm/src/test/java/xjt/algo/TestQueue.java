@@ -2,6 +2,8 @@ package xjt.algo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import xjt.algo.util.list.Queue;
+
 @Slf4j
 public class TestQueue {
     @Test
