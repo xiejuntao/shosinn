@@ -1,4 +1,4 @@
-package xjt.algo;
+package xjt.algo.util;
 
 import org.junit.jupiter.api.Test;
 import xjt.algo.util.list.Stack;

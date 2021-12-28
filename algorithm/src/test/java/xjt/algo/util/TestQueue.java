@@ -1,4 +1,4 @@
-package xjt.algo;
+package xjt.algo.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

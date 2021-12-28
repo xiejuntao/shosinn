@@ -1,4 +1,4 @@
-package xjt.algo.tree;
+package xjt.algo.util.tree;
 
 import org.junit.jupiter.api.Test;
 import xjt.algo.util.tree.BSTree;

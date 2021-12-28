@@ -15,40 +15,28 @@ public class LinkedList<T> {
         if(size()==0){
             head = node;
         }else {
-            LinkedNode<T> preNode = getPreLinkedNode(tail);
-            preNode.setNext(node);
+            tail.setNext(node);
         }
         tail = node;
         size = size + 1;
-        //LinkedNode<T> linkedNode = new LinkedNode<T>(t);
         return size;
     }
     public int size(){
         return size;
     }
-    public LinkedNode<T> getPreLinkedNode(LinkedNode<T> node){
-        LinkedNode<T> tmp = head;
-        while (tmp!=null){
-            if(tmp.getData().equals(node.getData())){
-                return tmp;
-            }else {
-                tmp = tmp.getNext();
-            }
-        }
-        return null;
-    }
     public void printAll(){
         if(size==0){
             return;
         }
+        StringBuilder sb = new StringBuilder();
         LinkedNode<T> node = head;
         while (node!=null){
-            System.out.println(node);
+            sb.append(node.getData()+"  ");
             node = node.getNext();
         }
-
+        System.out.println(sb);
     }
-    public T get(int i){
+    public LinkedNode getNode(int i){
         if(size<=0||i<0){
             return null;
         }
@@ -57,15 +45,22 @@ public class LinkedList<T> {
         while (node!=null){
             //System.out.println(node);
             if(index==i){
-                return node.getData();
+                return node;
             }
             node = node.getNext();
             index=index+1;
         }
         return null;
     }
+    public T get(int i){
+        LinkedNode<T> node = getNode(i);
+        if(node!=null){
+            return node.getData();
+        }
+        return null;
+    }
     @Data
-    private static class LinkedNode<T> {
+    public static class LinkedNode<T> {
         private T data;
         private LinkedNode<T> next;
         public LinkedNode(T t){
