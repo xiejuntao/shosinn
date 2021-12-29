@@ -15,7 +15,7 @@ public class LinkedList<T> {
         if(size()==0){
             head = node;
         }else {
-            tail.setNext(node);
+            tail.next = node;
         }
         tail = node;
         size = size + 1;
@@ -31,8 +31,8 @@ public class LinkedList<T> {
         StringBuilder sb = new StringBuilder();
         LinkedNode<T> node = head;
         while (node!=null){
-            sb.append(node.getData()+"  ");
-            node = node.getNext();
+            sb.append(node.data+"  ");
+            node = node.next;
         }
         System.out.println(sb);
     }
@@ -47,7 +47,7 @@ public class LinkedList<T> {
             if(index==i){
                 return node;
             }
-            node = node.getNext();
+            node = node.next;
             index=index+1;
         }
         return null;
@@ -55,14 +55,13 @@ public class LinkedList<T> {
     public T get(int i){
         LinkedNode<T> node = getNode(i);
         if(node!=null){
-            return node.getData();
+            return node.data;
         }
         return null;
     }
-    @Data
     public static class LinkedNode<T> {
-        private T data;
-        private LinkedNode<T> next;
+        public T data;
+        public LinkedNode<T> next;
         public LinkedNode(T t){
             this.data = t;
         }

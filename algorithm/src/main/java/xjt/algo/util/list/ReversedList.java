@@ -11,7 +11,10 @@ public class ReversedList<T> extends LinkedList{
        LinkedNode cur = this.getHead();
        LinkedNode pre = null;
         while (cur!=null){
-            if(pre==null){
+            cur.next = pre;
+            pre = cur;
+            cur = cur.next;
+            /*if(pre==null){
                 pre = cur;
                 //pre.setNext(null);
             }else{
@@ -20,10 +23,16 @@ public class ReversedList<T> extends LinkedList{
                 cur.setNext(pre);
             }
             cur = cur.getNext();
+            */
         }
         //this.setHead(cur);
     }
-    public LinkedNode getPreNode(LinkedNode node){
+    public void pairReverse(){
+        //LinkedNode pre = this.getHead();
+        //pre.
+
+    }
+    /*public LinkedNode getPreNode(LinkedNode node){
         LinkedNode head = this.getHead();
         LinkedNode pre = head;
         LinkedNode next = head.getNext();
@@ -35,5 +44,9 @@ public class ReversedList<T> extends LinkedList{
             next = next.getNext();
         }
         return null;
+    }*/
+
+    public static void main(String[] args) {
+        System.out.println(2);
     }
 }
