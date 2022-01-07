@@ -1,11 +1,10 @@
 package xjt.autumn.test;
 
 import lombok.extern.slf4j.Slf4j;
-import xjt.autumn.annotation.AutumnApp;
 import xjt.autumn.context.AutumnContext;
 import xjt.autumn.test.vo.Hero;
 @Slf4j
-@AutumnApp(packages = "xjt.autumn.test")
+//@AutumnApp(packages = "xjt.autumn.test")
 public class AutumnTest {
     public static void main(String[] args) {
         AutumnContext autumnContext = new AutumnContext();
