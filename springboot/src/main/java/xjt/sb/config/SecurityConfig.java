@@ -1,15 +1,27 @@
 package xjt.sb.config;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
-@Configuration
+/*@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return rawPassword.toString();
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return Objects.equals(rawPassword.toString(),encodedPassword);
+            }
+        };
+    }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("admin").password("pass").roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("admin").password("pass").roles("ADMIN")
+                .and().withUser("x").password("x").roles("USER");
+        //auth.inMemoryAuthentication().withUser("admin").password("{MD5}pass").roles("ADMIN");
+        //auth.inMemoryAuthentication().withUser("admin").password("{noop}pass").roles("ADMIN");
     }
 
     @Override
@@ -19,4 +31,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginProcessingUrl("/login")
                 .permitAll().and().csrf().disable();
     }
-}
+}*/

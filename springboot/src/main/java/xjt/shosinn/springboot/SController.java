@@ -1,24 +1,6 @@
 package xjt.shosinn.springboot;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Lookup;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
-import org.springframework.http.HttpHeaders;
-import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.*;
-import xjt.sb.service.DataService;
-import xjt.sb.service.LifeService;
-import xjt.sb.service.PrototypeServiceImpl;
-import xjt.sb.service.ServiceImpl;
-import xjt.sb.vo.World;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-
-@Slf4j
+/*@Slf4j
 @RestController
 public class SController {
     @Autowired
@@ -102,4 +84,4 @@ public class SController {
     public World getWork(@Valid @RequestBody World world){
         return world;
     }
-}
+}*/

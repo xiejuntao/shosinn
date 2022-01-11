@@ -5,3 +5,7 @@ user:
 spring:
   objenesis:
     ignore: true
+  resources:
+    add-mappings: false
+  mvc:
+    throwExceptionIfNoHandlerFound: true
