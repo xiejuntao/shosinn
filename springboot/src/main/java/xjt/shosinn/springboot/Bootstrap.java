@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ComponentScans;
 //@EnableAspectJAutoProxy(exposeProxy = true)
 @ServletComponentScan(value = "xjt")
 @ComponentScans({@ComponentScan("xjt.sb"),@ComponentScan("xjt.shosinn")})
+//@EnableTransactionManagement
 public class Bootstrap {
     public static void main(String[] args) {
         //new SpringApplicationBuilder().environment(env).sources(Bootstrap.class).run(args);
