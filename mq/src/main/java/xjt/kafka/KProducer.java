@@ -18,14 +18,14 @@ public class KProducer {
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
         Producer<String, String> producer = new KafkaProducer<>(props);
-        for (int i = 0; i < 100; i++)
-            producer.send(new ProducerRecord<String, String>("my-topic", Integer.toString(i), Integer.toString(i)), new Callback() {
+        for (int i = 0; i < 2; i++) {
+            producer.send(new ProducerRecord<String, String>("wq", Integer.toString(i), Integer.toString(i)), new Callback() {
                 @Override
                 public void onCompletion(RecordMetadata metadata, Exception exception) {
-                    log.info("send`msg={}",metadata);
+                    log.info("send`msg={}", metadata);
                 }
             });
-
+        }
         producer.close();
     }
 }
