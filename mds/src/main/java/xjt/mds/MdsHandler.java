@@ -55,6 +55,6 @@ public class MdsHandler {
             }
         }
         log.info("process`req={}`res={}",req,res);
-        mdsStreamHandler.write(res);
+        mdsStreamHandler.putRes(res);
     }
 }

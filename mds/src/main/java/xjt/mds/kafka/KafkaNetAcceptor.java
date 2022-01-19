@@ -17,6 +17,7 @@ public class KafkaNetAcceptor implements Runnable{
     private Selector selector;
     private ServerSocketChannel serverSocketChannel;
     private LinkedBlockingQueue<KafkaRequest> requestQueue;
+    private String tip = "k>";
     public KafkaNetAcceptor(ServerSocketChannel serverSocketChannel, LinkedBlockingQueue requestQueue) {
         try {
             this.serverSocketChannel = serverSocketChannel;
@@ -30,7 +31,9 @@ public class KafkaNetAcceptor implements Runnable{
     public void acceptRequest(){
         while (true){
             try {
+                log.info("ready accept request");
                 int size = selector.select(); // 阻塞，直到有通道事件就绪
+                log.info("accept request`size={}",size);
                 if(size>0){
                     Set<SelectionKey> selectionKeys = selector.selectedKeys();
                     Iterator<SelectionKey> iterator = selectionKeys.iterator();
@@ -38,19 +41,25 @@ public class KafkaNetAcceptor implements Runnable{
                         SelectionKey selectionKey = iterator.next();
                         if(selectionKey.isAcceptable()){
                             SocketChannel socketChannel = serverSocketChannel.accept();
-                            socketChannel.configureBlocking(false);
-                            socketChannel.register(selector,SelectionKey.OP_READ).attach(new MdsStreamHandler(socketChannel,"k>"));
+                            if(socketChannel!=null) {
+                                socketChannel.configureBlocking(false);
+                                socketChannel.write(ByteBuffer.wrap(tip.getBytes()));
+                                socketChannel.register(selector, SelectionKey.OP_READ);
+                                log.info("accept connection");
+                            }
                         }
                         if(selectionKey.isReadable()){
                             SocketChannel socketChannel = (SocketChannel)selectionKey.channel();
-                            MdsStreamHandler mdsStreamHandler = (MdsStreamHandler) selectionKey.attachment();
+                            MdsStreamHandler mdsStreamHandler = new MdsStreamHandler(socketChannel,tip);
+                            log.info("begin read req");
                             mdsStreamHandler.read(new MdsStreamHandler.MdsReadStreamCallback() {
                                 @Override
                                 public void readCompleted(String req) {
                                     try {
+                                        log.info("finish read req`data={}",req);
                                         requestQueue.put(new KafkaRequest(selectionKey,req));
                                     } catch (InterruptedException e) {
-                                        log.error("accept error",e);
+                                        log.error("read req error",e);
                                     }
                                 }
                             });
@@ -58,14 +67,24 @@ public class KafkaNetAcceptor implements Runnable{
                         if(selectionKey.isWritable()){
                             SocketChannel socketChannel = (SocketChannel)selectionKey.channel();
                             String res = (String)selectionKey.attachment();
-                            socketChannel.write(ByteBuffer.wrap(res.getBytes()));
-                            socketChannel.register(selector,SelectionKey.OP_READ, ByteBuffer.allocate(1024));
+                            log.info("response`result={}",res);
+                            MdsStreamHandler mdsStreamHandler = new MdsStreamHandler(socketChannel,tip);
+                            mdsStreamHandler.writeRes(res, new MdsStreamHandler.MdsWriteStreamCallback() {
+                                @Override
+                                public void closeSession() throws IOException {
+                                    socketChannel.close();
+                                }
+                                @Override
+                                public void writeCompleted() {
+                                    selectionKey.interestOps(SelectionKey.OP_READ);
+                                }
+                            });
                         }
                     }
                     selectionKeys.clear();
                 }
             }catch (Exception e){
-                e.printStackTrace();
+                log.info("accept request error",e);
             }
         }
     }

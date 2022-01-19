@@ -58,7 +58,9 @@ public class MdsStreamHandler {
         input.clear(); // 清空接收缓冲区
         int n = socketChannel.read(input);
         if (inputIsComplete(n)) {
-            callback.readCompleted(reqCache.toString());
+            if(callback!=null){
+                callback.readCompleted(reqCache.toString());
+            }
         }
     }
     public void write(MdsWriteStreamCallback callback) throws IOException {
@@ -69,19 +71,29 @@ public class MdsStreamHandler {
         }
         // 检查连接是否处理完毕，是否断开连接
         if (outputIsComplete(written)) {
-            callback.closeSession();
+            if(callback!=null) {
+                callback.closeSession();
+            }
         } else {
             // 把提示发到界面
             socketChannel.write(ByteBuffer.wrap(("\r\n"+tip).getBytes()));
-            callback.writeCompleted();
+            if(callback!=null) {
+                callback.writeCompleted();
+            }
         }
     }
 
-    public void write(String res) {
+    public void putRes(String res) {
         byte[] response = res.getBytes(StandardCharsets.UTF_8);
         output.put(response);
     }
-
+    public void writeRes(String res,MdsWriteStreamCallback mdsWriteStreamCallback) throws IOException {
+        putRes(res);
+        write(mdsWriteStreamCallback);
+    }
+    public void writeRes(String res) throws IOException {
+        writeRes(res,null);
+    }
     public interface MdsReadStreamCallback {
         public void readCompleted(String req);
     }
