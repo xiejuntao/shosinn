@@ -12,11 +12,11 @@ public class MdsHandler {
     private MdsStreamHandler mdsStreamHandler;
     public MdsHandler(SocketChannel socketChannel){
         this.socketChannel = socketChannel;
-        mdsStreamHandler = new MdsStreamHandler(socketChannel);
+        mdsStreamHandler = new MdsStreamHandler(socketChannel,MdsConstants.SINGLETIP);
     }
     public void handle(SelectionKey selectionKey) throws IOException {
        if (selectionKey.isReadable()) {
-            mdsStreamHandler.readCompleted(new MdsStreamHandler.MdsReadStreamCallback() {
+            mdsStreamHandler.read(new MdsStreamHandler.MdsReadStreamCallback() {
                 @Override
                 public void readCompleted(String req) {
                     process(req);
@@ -25,7 +25,7 @@ public class MdsHandler {
             });
         }
         if (selectionKey.isWritable()) {
-            mdsStreamHandler.writeCompleted(new MdsStreamHandler.MdsWriteStreamCallback() {
+            mdsStreamHandler.write(new MdsStreamHandler.MdsWriteStreamCallback() {
                 @Override
                 public void closeSession() throws IOException {
                     selectionKey.channel().close();

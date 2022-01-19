@@ -17,8 +17,10 @@ public class MdsStreamHandler {
     // 缓存每次读取的内容
     private StringBuilder reqCache = new StringBuilder();
     private SocketChannel socketChannel;
-    public MdsStreamHandler(SocketChannel socketChannel){
+    private String tip;
+    public MdsStreamHandler(SocketChannel socketChannel,String tip){
         this.socketChannel = socketChannel;
+        this.tip = tip;
     }
     private boolean inputIsComplete(int bytes) throws EOFException {
         if (bytes > 0) {
@@ -52,14 +54,14 @@ public class MdsStreamHandler {
         reqCache.delete(0, reqCache.length());
         return false;
     }
-    public void readCompleted(MdsReadStreamCallback callback) throws IOException {
+    public void read(MdsReadStreamCallback callback) throws IOException {
         input.clear(); // 清空接收缓冲区
         int n = socketChannel.read(input);
         if (inputIsComplete(n)) {
             callback.readCompleted(reqCache.toString());
         }
     }
-    public void writeCompleted(MdsWriteStreamCallback callback) throws IOException {
+    public void write(MdsWriteStreamCallback callback) throws IOException {
         int written = -1;
         output.flip();// 切换到读取模式，判断是否有数据要发送
         if (output.hasRemaining()) {
@@ -70,7 +72,7 @@ public class MdsStreamHandler {
             callback.closeSession();
         } else {
             // 把提示发到界面
-            socketChannel.write(ByteBuffer.wrap(("\r\n"+MdsConstants.SINGLETIP).getBytes()));
+            socketChannel.write(ByteBuffer.wrap(("\r\n"+tip).getBytes()));
             callback.writeCompleted();
         }
     }

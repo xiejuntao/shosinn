@@ -6,6 +6,8 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import xjt.kafka.clients.KConsumerCallback;
+import xjt.kafka.clients.KConsumerClients;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -18,6 +20,29 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class KConsumer {
     public static void main(String[] args) {
+        String topic = "lwq";
+        String group = "xjt";
+        KConsumerClients kConsumerClients = new KConsumerClients("localhost:9093");
+        kConsumerClients.consume(topic, group+"_consume2", new KConsumerCallback() {
+            @Override
+            public void handle(ConsumerRecord consumerRecord) {
+                log.info("consume`record={}",consumerRecord);
+            }
+        });
+/*        kConsumerClients.multiConsumeThread(topic, group + "_multiConsumeThread", 5, new KConsumerCallback() {
+            @Override
+            public void handle(ConsumerRecord consumerRecord) {
+                log.info("multiConsumeThread`record={}",consumerRecord);
+            }
+        });
+        kConsumerClients.multiConsumeWithWorkerThread(topic, group + "_multiConsumeWithWorkerThread", 5, 10, new KConsumerCallback() {
+            @Override
+            public void handle(ConsumerRecord consumerRecord) {
+                log.info("multiConsumeWithWorkerThread`record={}",consumerRecord);
+            }
+        });*/
+    }
+    public static void test(){
         Properties properties = new Properties();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9093");
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
