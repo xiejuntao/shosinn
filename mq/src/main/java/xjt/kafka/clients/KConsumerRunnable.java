@@ -51,10 +51,10 @@ public class KConsumerRunnable implements Runnable{
         try {
             while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(kConsumerConfig.POLL_INTERVAL_SECONDS));
-                log.info("consume record`size={}", records.count());
                 if(records.isEmpty()){
                     continue;
                 }
+                log.info("consume record`size={}", records.count());
                 if(multiWorker){
                     CountDownLatch countDownLatch = new CountDownLatch(records.count());
                     for (ConsumerRecord consumerRecord : records) {

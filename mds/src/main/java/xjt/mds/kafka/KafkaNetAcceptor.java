@@ -2,6 +2,7 @@ package xjt.mds.kafka;
 
 import lombok.extern.slf4j.Slf4j;
 import xjt.mds.MdsStreamHandler;
+import xjt.mds.kafka.request.KafkaRequestType;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -57,7 +58,7 @@ public class KafkaNetAcceptor implements Runnable{
                                 public void readCompleted(String req) {
                                     try {
                                         log.info("finish read req`data={}",req);
-                                        requestQueue.put(new KafkaRequest(selectionKey,req));
+                                        requestQueue.put(new KafkaRequest(selectionKey, KafkaRequestType.PRODUCE,req));
                                     } catch (InterruptedException e) {
                                         log.error("read req error",e);
                                     }
