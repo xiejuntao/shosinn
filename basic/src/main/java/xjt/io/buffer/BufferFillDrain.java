@@ -18,10 +18,9 @@ public class BufferFillDrain {
         }
     }
     public static void drainBuffer(CharBuffer buffer){
-        while(buffer.hasRemaining()){
-            System.out.print(buffer.get());
+        while(buffer.hasRemaining()){//position < limit
+            System.out.println("drain:"+buffer.get());
         }
-        System.out.println("");
     }
     public static boolean fillBuffer(CharBuffer buffer){
         if(index>= lines.length){

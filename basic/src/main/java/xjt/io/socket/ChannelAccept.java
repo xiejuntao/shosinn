@@ -13,39 +13,49 @@ import java.util.concurrent.locks.LockSupport;
 
 @Slf4j
 public class ChannelAccept {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ByteBuffer buffer = ByteBuffer.wrap("人生如斯".getBytes(StandardCharsets.UTF_8));
         ServerSocketChannel serverSocketChannel = null;
-        try {
-            serverSocketChannel = ServerSocketChannel.open();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            serverSocketChannel.socket().bind(new InetSocketAddress(2046));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            serverSocketChannel.configureBlocking(false);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        serverSocketChannel = ServerSocketChannel.open();
+        serverSocketChannel.socket().bind(new InetSocketAddress(2046));
+
+        //serverSocketChannel.configureBlocking(false);
         while (true){
             log.info("waiting for connections");
-            try {
-                SocketChannel socketChannel = serverSocketChannel.accept();
-                if(socketChannel==null){
-                    LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(2));
-                }else{
-                    log.info("incoming connection`address={}",socketChannel.getRemoteAddress());
-                    buffer.rewind();
-                    socketChannel.write(buffer);
-                    socketChannel.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            SocketChannel socketChannel = serverSocketChannel.accept();//非阻塞模式,立即返回
+            if(socketChannel==null){
+                LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(2));
+            }else{
+                log.info("incoming connection`address={}",socketChannel.getRemoteAddress());
+
+                //rewind(buffer);
+                //buffer.position(0);
+
+                socketChannel.write(buffer);
+                flip(buffer);
+                log.info("write buffer");
+                //socketChannel.close();
             }
         }
+    }
+    /**
+     * 倒带？
+     */
+    public static void rewind(ByteBuffer buffer){
+        log.info("before rewind`limit={}`position={}`mark={}`capacity={}"
+                ,buffer.limit(),buffer.position(),buffer.mark(),buffer.capacity());
+        buffer.rewind();
+        log.info("after rewind`limit={}`position={}`mark={}`capacity={}"
+                ,buffer.limit(),buffer.position(),buffer.mark(),buffer.capacity());
+    }
+    /**
+     * 翻转
+     */
+    public static void flip(ByteBuffer buffer){
+        log.info("before flip`limit={}`position={}`mark={}`capacity={}"
+                ,buffer.limit(),buffer.position(),buffer.mark(),buffer.capacity());
+        buffer.flip();
+        log.info("after flip`limit={}`position={}`mark={}`capacity={}"
+                ,buffer.limit(),buffer.position(),buffer.mark(),buffer.capacity());
     }
 }
