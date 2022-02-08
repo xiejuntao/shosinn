@@ -5,7 +5,7 @@ import xjt.mds.Mds;
 public class Redis {
     Mds mds = null;
     public Redis(){
-        this(6379);
+        this(7379);
     }
     public Redis(int port){
         mds = new Mds(port);
